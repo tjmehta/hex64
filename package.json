@@ -7,12 +7,12 @@
   "version": "0.3.0",
   "description": "Base64 encode and decode Hex strings for URLs (module and binary tool)",
   "keywords": [
-    "hex64",
-    "hex64 encode",
-    "hex64 decode",
-    "hex64 url",
-    "hex64 commandline",
-    "hex64 binary"
+    "base64",
+    "hex encode base64",
+    "base64 decode hex",
+    "base64 url",
+    "base64 commandline",
+    "base64 binary"
   ],
   "main": "index.js",
   "bin": {
