@@ -1,0 +1,33 @@
+{
+  "author": {
+    "name": "Tejesh Mehta",
+    "email": "tejesh.mehta@gmail.com"
+  },
+  "name": "hex64",
+  "version": "0.3.0",
+  "description": "Base64 encode and decode Hex strings for URLs (module and binary tool)",
+  "keywords": [
+    "hex64",
+    "hex64 encode",
+    "hex64 decode",
+    "hex64 url",
+    "hex64 commandline",
+    "hex64 binary"
+  ],
+  "main": "index.js",
+  "bin": {
+    "hex64": "./bin/hex64"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tjmehta/hex64.git"
+  },
+  "license": "MIT",
+  "readmeFilename": "Readme.md",
+  "bugs": {
+    "url": "https://github.com/tjmehta/hex64/issues"
+  }
+}

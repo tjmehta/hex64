@@ -1,0 +1,81 @@
+#!/usr/bin/env node
+/**
+ * CLI
+ */
+var hex64 = require('../lib/hex64'),
+    args = process.argv,
+    version = require('../package.json').version,
+    usage;
+
+// Usage dialog
+usage = [
+    'hex64 ' + version
+  , ''
+  , 'Usage:'
+  , '  hex64 [options] [string]'
+  , ''
+  , 'Options:'
+  , '  hex'
+  , '  b64, base64'
+  , ''
+  , 'Help:'
+  , '  -h , --help, help'
+  , ''
+  , 'Current version:'
+  , '  -v , --version, version'
+  , ''
+  , 'Examples:'
+  , '  $ hex64 b64 cccccc'
+  , '  zMzM'
+  , '  $ hex64 hex zMzM'
+  , '  cccccc'
+  , '  $ hex64 cccccc'
+  , '  b64: zMzM'
+  , '  $ hex64 zMzM'
+  , '  hex: cccccc'
+  , ''
+].join('\n');
+
+// Exit the process with a message
+function die () {
+  var args = Array.prototype.slice.call(arguments);
+  var errFound =
+    args.some(function (a, i) {
+      if (a instanceof Error) {
+        console.error(a);
+        return true;
+      }
+    });
+  if (!errFound) {
+    console.log.apply(console, arguments);
+  }
+
+  process.exit();
+}
+
+if (args[0] && args[0].indexOf('node') !== -1) {
+    args = args.slice(2);
+}
+if (args.length === 0 || args[0] === '-h' || args[0] === '--help' || args[0] === 'help') {
+  die(usage);
+}
+if (args[0] === '-v' || args[0] === '--version' || args[0] === 'version') {
+  die(version);
+}
+
+var str = args.slice(1).join(' ');
+if (args[0] === 'b64' || args[0] === 'base64') {
+  die(hex64.toBase64(str));
+}
+if (args[0] === 'hex') {
+  die(hex64.toHex(str));
+}
+
+var out;
+str = args.join(' '); // no 'options' found, use args joined as input string
+if (hex64.isHex(str)) {
+  die('b64: %s', hex64.toBase64(str));
+}
+else {
+  die('hex: %s', hex64.toHex(str));
+}
