@@ -30,3 +30,7 @@ node:
 
 	hex64.decode('zMzM');     // cccccc
   hex64.toHex('zMzM');      // cccccc
+
+
+license:
+  MIT
