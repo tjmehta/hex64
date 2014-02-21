@@ -1,1 +1,1 @@
-modules.exports = require('./lib/url64');
+modules.exports = require('./lib/hex64');
