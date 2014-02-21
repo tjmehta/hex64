@@ -33,11 +33,21 @@ usage = [
   , '  b64: zMzM'
   , '  $ hex64 zMzM'
   , '  hex: cccccc'
+  , '  $ hex64 hex zMzM zMzM'
+  , '  zMzM'
+  , '  cccccc'
+  , '  zMzM'
+  , '  cccccc'
+  , '  $ hex64 zMzM zMzM'
+  , '  zMzM'
+  , '  hex: cccccc'
+  , '  zMzM'
+  , '  hex: cccccc'
   , ''
 ].join('\n');
 
 // Exit the process with a message
-function die () {
+function print () {
   var args = Array.prototype.slice.call(arguments);
   var errFound =
     args.some(function (a, i) {
@@ -49,7 +59,8 @@ function die () {
   if (!errFound) {
     console.log.apply(console, arguments);
   }
-
+}
+function die () {
   process.exit();
 }
 
@@ -63,19 +74,26 @@ if (args[0] === '-v' || args[0] === '--version' || args[0] === 'version') {
   die(version);
 }
 
-var str = args.slice(1).join(' ');
+var strArr = args.slice(1);
+var prepend, convert;
 if (args[0] === 'b64' || args[0] === 'base64') {
-  die(hex64.toBase64(str));
+  convert = hex64.toBase64.bind(hex64);
 }
-if (args[0] === 'hex') {
-  die(hex64.toHex(str));
+else if (args[0] === 'hex') {
+  convert = hex64.toHex.bind(hex64);
 }
 
-var out;
-str = args.join(' '); // no 'options' found, use args joined as input string
-if (hex64.isHex(str)) {
-  die('b64: %s', hex64.toBase64(str));
-}
-else {
-  die('hex: %s', hex64.toHex(str));
-}
+args.forEach(function (str) {
+  if (args.length > 1) console.log(str);
+  if (convert) {
+    print('%s', convert(str));
+  }
+  else if (hex64.isHex(str)) {
+    print('b64: %s', hex64.toBase64(str));
+  }
+  else {
+    print('hex: %s', hex64.toHex(str));
+  }
+});
+
+die();
