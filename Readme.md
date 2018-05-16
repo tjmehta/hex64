@@ -1,10 +1,10 @@
-###Base64 encode / decode Hex strings for URLs (module and binary tool)
+### Base64 encode / decode Hex strings for URLs (module and binary tool)
 
-####install:
+#### install:
 ```bash
 npm install -g hex64
 ```
-####commandline:
+#### commandline:
 ```bash
 $ hex64 b64 cccccc
 zMzM
@@ -21,7 +21,7 @@ hex: cccccc
 $ hex64 b64 zzz
 [Error: Invalid hex string]
 ```
-####node:
+#### node:
 ```js
 var hex64 = require('hex64');
 
@@ -36,5 +36,5 @@ hex64.transform('cccccc') // zMzM
 hex64.transform('zMzM')   // cccccc
 ```
 
-license:
-  MIT
+#### license:
+MIT
